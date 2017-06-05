@@ -1,4 +1,4 @@
-# ** Recursion **
+# **Recursion**
 
 #### Introduction
 In computer programming, we as programmers use a lot repetitions. Just think about it. How many times you used a `for` loop to iterate over an array that you would add to the DOM in a webpage, or carrying manipulations in the data that you retrieved from a storage (as a collection of a certain type), being it a simple CSV file or a relational database. We all love our `for` and `while` looping statements, given their simplicity in usage. But be aware that as programmers we have another hidden gem, and you guessed it, it is * recursion *.
