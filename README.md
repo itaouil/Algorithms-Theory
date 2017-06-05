@@ -173,6 +173,18 @@ makeTree(categories, null)
 
 ```
 
+#### Useful Tips
+Before wrapping up I would like to add some useful info about one of the ways you could proceed with when designing a recursive algorithm:
+
+###### Design
+1. **Test For Base Cases**:
+Try to define what will be the different base cases that might arise the problem you are trying to tackle, as this is the true recursion spirit, you break the problem into subproblems but you MUST reach at one point a base case to start returning back to your original problem's solution. So make sure you understand the base cases and you TEST for them in your algorithm.
+
+2. **Recur**: Yes, you need to recur in a recursive algorithm. If in any situation a previous call does not reach the base case, break it into smaller instances. The recursion part might even have a test case to see which recursive call to make (as in the binary search example).
+
+
+###### Optimisation
+Each recursive call your algorithms makes drains away CPU and takes away memory resources. Hence, makes sure you design your algorithm properly as well as optimise it in the best way. You could either try optimising it by not relying on the interpreter stack memory (at least in Python, not sure in JavaScript but should be the same), by for example using your own stack to store only the minimal information required. Another approach would be to actually eliminate **tail recursion**, where a tail recursion is a recursion whose returned value is the last operation.
 
 #### Conclusions
 Recursion is an elegant and more efficient way, sometimes, then the usual looping statements. Even because whenever you use a loop you can easily use a recursive approach but the opposite is far more unusual.
