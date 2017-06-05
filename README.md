@@ -19,9 +19,160 @@ The examples we are going to tackle will comprehend the following topics:
 *Binary Search
 *Create a tree like object from a given object array
 
-**N.B:**The programming languages used for these example will be Python and JavaScript (ES6) and you can find the example programs in the repo as well.
+**N.B:** The programming languages used for these example will be Python and JavaScript (ES6) and you can find the example programs in the repo as well.
 
 ###### Fibonacci
+The mathematical approach to computer the factorial of a number is **NOT** a perfect example of a recursive approach but it is simple and basic enough to give you a general idea.
+
+Fibonacci says:
+
+`n! = 1 if n = 0`
+
+`n! = n * (n-1)! if n>0`
+
+Hence:
+
+**Python Code**
+```Python
+def factorial(n):
+
+  """
+    Input: A non-negative number.
+    Output: The fatorial of the number.
+  """
+
+  # Define Base Case
+  if n == 0:
+    return 1
+
+  # Define Recursive Function
+  else:
+    return n * factorial(n-1)
+```
+
+**JavaScript Code**
+```JavaScript
+var factorial = (n) => {
+
+    /*
+      Input: A non-negative number.
+
+      Output: The fatorial of the number.
+    */
+
+    if (n == 0)
+      return 1;
+
+    else
+      return n * factorial(n-1);
+
+}
+```
+
+###### File System Cumulative Sum
+The problem tackled is that given the path to a file system we want to be able to compute the cumulative sum, that is the memory occupied the folder itself plus any child folders.
+
+This recursive approach derives from the fact that all modern Operating Systems handle their file system in a recursive manner (a folder, within a folder, and so on: aka tree structure). So it is not a surprise if operations on folders (copy, delete, etc) are carries out by recursive algorithms.
+
+**Python Code**
+
+You will need the os module import.
+
+```Python
+def cumulative(path):
+
+  """
+    Input: The path to a file system.
+    Output: The cumulative sum.
+  """
+
+  # Get immediate size
+  total = os.path.getSize(path)
+
+  # Recursive case
+  if os.path.isDir(path):
+
+    # Iterate over children dirs
+    for child in os.listDir(path):
+
+      # Compute cumulative sum
+      total += os.path.join(path, child)
+  return total  
+```
+
+###### Binary Search
+Binary Search is one of the most important/famous algorithms in computer science, part of the divide and conquer methodology. The binary search makes searching a lot more faster than the usual sequential search (brute force). Here is a link if you want to get to know more about it: [binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm).
+
+The algorithm can be broken in the following steps:
+
+1. If target equals the middle element then we are done.
+2. If target is smaller than the middle element, we drop the upper half of the collection and we run the function again on the remaining part.
+3. If target is bigger than the middle element, we drop the lower half of the collection and we run the function again on the remaining part.
+4. If low > high we reached our worst base case and the element is not in the collection.
+
+**Python Code**
+
+You will need the os module import.
+
+```Python
+def binary_search(data, target, low, high):
+
+  """
+    Input: Elements
+    Output: True or False.
+  """
+
+  # Base case element not in the collection
+  if low > high:
+    return False
+
+  else:
+
+    #Compute middle element
+    mid = (low + high) // 2
+
+    if target < data[mid]:
+      binary_search(data, target, low, mid - 1)
+
+    else:
+      binary_search(data, target, mid + 1, high)
+
+```
+
+###### Creating tree like object
+The following example is a funfunfunction episode about recursion: [video](https://www.youtube.com/watch?v=k7-N8R0-KY4)
+
+**JavaScript Code**
+
+```JavaScript
+// Our collection
+var categories = [
+  {id: "animals", parent: null},
+  {id: "mammals", parent: "animals"},
+  {id: "cats", parent: "mammals"},
+  {id: "dogs", parent: "mammals"},
+  {id: "siamese", parent: "cats"},
+  {id: "pitbul", parent: "dogs"},
+]
+
+var makeTree = (categories, parent) => {
+  // Our building node
+  let node = {}
+
+  // Build our tree
+  categories
+    .filter(item => item.parent = parent)
+    .map(item => node[item.id] = makeTree(categories, item.id))
+
+  // Return tree object
+  return node
+}
+
+// Call to function
+makeTree(categories, null)
+
+```
+
 
 #### Conclusions
 Recursion is an elegant and more efficient way, sometimes, then the usual looping statements. Even because whenever you use a loop you can easily use a recursive approach but the opposite is far more unusual.
